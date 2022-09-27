@@ -1,0 +1,86 @@
+Script started on 2023-09-27 01:54:13-04:00
+========================================================================
+CREATING ALIASES
+========================================================================
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ vi ~/.bashrc
+# User specific aliases and functions
+alias l=’ls -latr’
+alias w=’ls -la | wc’
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ source /etc/bashrc
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ w
+      5      38     264
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ l
+total 3162796
+-rw-rw-r-- 1 shivam shivam 3238702530 Sep 27 00:49 amazon_reviews_us_Books_v1_02.tsv
+-rw-rw-r-- 1 shivam shivam          0 Sep 27 01:54 a2.txt
+drwxrwxr-x 2 shivam shivam         61 Sep 27 01:54 38;5;33m.
+drwx------ 8 shivam shivam        223 Sep 27 01:54 38;5;33m..
+
+========================================================================
+CREATING DIRS
+========================================================================
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ mkdir {CUSTOMERS,PRODUCTS}
+
+========================================================================
+CREATING FILES FOR CUSTOMER IDS
+========================================================================
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '30432594' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > CUSTOMERS/304322594
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '30425395' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > CUSTOMERS/304255395
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '30422857' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > CUSTOMERS/304222857
+
+========================================================================
+FINDING MEANS FOR CUSTOMER IDS
+========================================================================
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ cd CUSTOMERS/
+
+shivam@sjsu:~/worksheet4/CUSTOMERS[shivam@sjsu CUSTOMERS]$ awk '{ total += $1 } END { print total/NR }' 30432594
+9.94444
+
+shivam@sjsu:~/worksheet4/CUSTOMERS[shivam@sjsu CUSTOMERS]$ awk '{ total += $1 } END { print total/NR }' 30425395
+15
+
+shivam@sjsu:~/worksheet4/CUSTOMERS[shivam@sjsu CUSTOMERS]$ awk '{ total += $1 } END { print total/NR }' 30422857
+3.22222
+
+========================================================================
+CREATING FILES FOR PRODUCT IDS
+========================================================================
+
+shivam@sjsu:~/worksheet4/CUSTOMERS[shivam@sjsu CUSTOMERS]$ cd ../
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '0310205719' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > PRODUCTS/03100205719
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '0385337116' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > PRODUCTS/03855337116
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ fgrep '0446310786' amazon_reviews_us_Books_v1_02.tsv | cut -f 9 > PRODUCTS/04466310786
+
+========================================================================
+FINDING MEANS FOR PRODUCT IDS
+========================================================================
+
+shivam@sjsu:~/worksheet4[shivam@sjsu worksheet4]$ cd PRODUCTS/
+
+shivam@sjsu:~/worksheet4/PRODUCTS[shivam@sjsu PRODUCTS]$ awk '{ total += $1 } END { print total/NR }' 0310205719
+21.0999
+
+shivam@sjsu:~/worksheet4/PRODUCTS[shivam@sjsu PRODUCTS]$ awk '{ total += $1 } END { print total/NR }' 0385337116
+6.66203
+
+shivam@sjsu:~/worksheet4/PRODUCTS[shivam@sjsu PRODUCTS]$ awk '{ total += $1 } END { print total/NR }' 0446310786
+3.26958
+
+========================================================================
+LOGGING
+========================================================================
+
+shivam@sjsu:~/worksheet4/PRODUCTS[shivam@sjsu PRODUCTS]$ history > cmds.log
+shivam@sjsu:~/worksheet4/PRODUCTS[shivam@sjsu PRODUCTS]$ exit
+
+Script done on 2022-09-27 01:56:31-04:00
+
